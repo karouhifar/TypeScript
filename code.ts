@@ -5,6 +5,8 @@ const num3Dom = document.getElementById("num3")! as HTMLInputElement;
 const tBody = document.getElementById("dataJSON")! as HTMLElement;
 const result = document.getElementById("result")! as HTMLElement;
 
+declare type Combinable = Array<string | number>;
+
 interface PersonName {
     name ?: string
 }
@@ -37,7 +39,7 @@ async function  getJSONData () {
 buttom.addEventListener("click", ()=> {
     let data = new Data(+num1Dom.value,+num2Dom.value);
     let result1 = data.doubleAmount(+num3Dom.value, "Jack");
-    getJSONData().then((json)=> json.json() ).then((data: Array<{name : string; age: Number, hobbies: Array<string | number>}>)=>{
+    getJSONData().then((json)=> json.json() ).then((data: Array<{name : string; age: Number, hobbies: Combinable}>)=>{
         let stringData : string = "";
        for (const dataArray of data ) {
         stringData += "<tr><td>" + dataArray.name + "</td><td>" + dataArray.age +"</td><td>" + dataArray.hobbies +"</td></tr>";
